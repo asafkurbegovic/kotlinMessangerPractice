@@ -98,7 +98,11 @@ class MainActivity : AppCompatActivity() {
         val user = User( text_username.text.toString(),imageUrl, uid )
         ref.setValue(user).addOnSuccessListener {
             Log.e("Message", "User Registered Successfully")
+            val finalIntent = Intent(this, MessagesActivity::class.java)
+            finalIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(finalIntent)
         }
+            .addOnFailureListener { return@addOnFailureListener }
 
     }
 
