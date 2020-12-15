@@ -15,7 +15,14 @@ class NewMessageActivity : AppCompatActivity() {
 
         val adapter = GroupAdapter<GroupieViewHolder>()
         recyclerView_newMessage.adapter = adapter
+
+        listAllUsers()
     }
+
+    private fun listAllUsers() {
+        TODO("Not yet implemented")
+    }
+
 }
 
 class UserItem : Item<GroupieViewHolder>() {
@@ -24,7 +31,7 @@ class UserItem : Item<GroupieViewHolder>() {
     }
 
     override fun getLayout(): Int {
-         R.layout.user_row_layout
+         return R.layout.user_row_layout
     }
 
 }
