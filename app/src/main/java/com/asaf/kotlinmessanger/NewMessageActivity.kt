@@ -6,6 +6,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
@@ -41,7 +42,6 @@ class NewMessageActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
             }
 
         })
@@ -52,6 +52,7 @@ class NewMessageActivity : AppCompatActivity() {
 class UserItem(val user: User) : Item<GroupieViewHolder>() {
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
     viewHolder.itemView.textView_username_userRow.text = user.username
+        Picasso.get().load(user.profilePicUrl).into(viewHolder.itemView.imageView_profilePic_userRow)
     }
 
     override fun getLayout(): Int {
