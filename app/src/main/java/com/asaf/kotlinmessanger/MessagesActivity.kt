@@ -41,7 +41,6 @@ class MessagesActivity : AppCompatActivity() {
             R.id.menu_newMessage -> {
                 val newMessageIntent = Intent(this, NewMessageActivity::class.java)
                 startActivity(newMessageIntent)
-
             }
 
         }

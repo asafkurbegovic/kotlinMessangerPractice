@@ -1,5 +1,6 @@
 package com.asaf.kotlinmessanger
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
@@ -37,6 +38,13 @@ class NewMessageActivity : AppCompatActivity() {
                         adapter.add(UserItem(user))
                     }
                 }
+
+                adapter.setOnItemClickListener { item, view ->
+                    val  chatIntent = Intent(view.context, ChatLogActivity::class.java)
+                    startActivity(chatIntent)
+                    finish()
+                }
+
                 recyclerView_newMessage.adapter = adapter
 
             }
