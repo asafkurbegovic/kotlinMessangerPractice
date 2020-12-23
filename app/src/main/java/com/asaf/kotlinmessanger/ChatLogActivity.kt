@@ -3,6 +3,7 @@ package com.asaf.kotlinmessanger
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -29,12 +30,18 @@ class ChatLogActivity : AppCompatActivity() {
 
     }
 
-    class ChatMessage (val text:String)
+    class ChatMessage (val messageId: String, val text:String, fromID: String, toID:String, timeStamp: Long)
 
     private fun sendMessageHandler() {
         val rawText = textView_message_chatLog.text.toString()
+        val toid = intent.getParcelableExtra<User>("USER_INFO")?.uid
+        val fromid = FirebaseAuth.getInstance().uid
         val reference = FirebaseDatabase.getInstance().getReference("/messages").push()
-        val rawMessage = ChatMessage(rawText)
+        val rawMessage = fromid?.let {
+            if (toid != null) {
+                reference.key?.let { it1 -> ChatMessage(it1, rawText, it,toid, System.currentTimeMillis()/1000) }
+            }
+        }
         reference.setValue(rawMessage)
             .addOnSuccessListener {
                 Log.e("SendMessage", "hello world!!!")
