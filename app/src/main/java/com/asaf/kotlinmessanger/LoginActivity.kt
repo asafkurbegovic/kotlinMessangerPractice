@@ -14,5 +14,6 @@ class LoginActivity: AppCompatActivity () {
             val returnIntent = Intent(this, MainActivity::class.java)
             startActivity(returnIntent)
         }
+//        TODO(FINISH LOGIN ACTIVITY FINALLY )
     }
 }
